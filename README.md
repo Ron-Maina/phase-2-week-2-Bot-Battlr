@@ -1,4 +1,4 @@
-# Bank of Flatiron
+# Bot Battlr
 Bot Battlr Built With Raect, react bootstrap, Html, and some vanilla CSS
 
 By Ron Maina
