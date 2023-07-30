@@ -5,12 +5,18 @@ import { BsFillHeartPulseFill, BsFillLightningChargeFill, BsShieldShaded} from "
 function BotCollection({bots}) {
     
     const[selectedBot, setSelectedBot]= useState([])
-    
+    const[selectedID, setSelectedID] = useState([])
+
     function handleClick(id){
         const selected = bots.filter(selected => selected.id === id)
-        selected.map(bot => setSelectedBot([...selectedBot, bot]))
-        console.log(selectedBot)
-          
+        selected.map(bot => {
+            if (selectedID.includes(bot.id)){
+                return null
+            } else{
+                setSelectedID([...selectedID, id])
+                setSelectedBot([...selectedBot,bot])
+            }
+        })   
     }
 
     const bot = bots.map((bot) => (
