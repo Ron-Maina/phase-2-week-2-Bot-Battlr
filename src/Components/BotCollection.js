@@ -1,33 +1,18 @@
-import React, {useState, useEffect} from 'react'
-import YourBotArmy from './YourBotArmy';
+import React from 'react'
 import { BsFillHeartPulseFill, BsFillLightningChargeFill, BsShieldShaded} from "react-icons/bs";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useNavigate } from 'react-router-dom';
 
 
-function BotCollection({bots, onDelete}) {
+
+function BotCollection({bots, onDelete, onRenderDetails, onRelease}) {
+
+    const navigate = useNavigate()
     
-    const[selectedBot, setSelectedBot]= useState([])
-    const[selectedID, setSelectedID] = useState([])
-
-
-    function releaseBotFromArmy(id){
-        const filteredArray = selectedBot.filter(bot => bot.id !== id)
-        const filteredID = selectedID.filter(ID => ID !== id)
-        setSelectedID(filteredID)
-        setSelectedBot(filteredArray)
-    }
-
-    function handleAddToArmy(id){
-        const selected = bots.filter(selected => selected.id === id)
-        selected.map(bot => {
-            if (selectedID.includes(bot.id)){
-                return null
-            } else{
-                setSelectedID([...selectedID, id])
-                setSelectedBot([...selectedBot,bot])
-            }
-        })   
+    function viewDetails(id){
+        onRenderDetails(id)
+        navigate('/specs', {replace: true})
     }
 
     function handleDeleteBot(id){
@@ -35,16 +20,16 @@ function BotCollection({bots, onDelete}) {
             method: "DELETE"
         })
         onDelete(id)
-        releaseBotFromArmy(id)
+        onRelease(id)
     }
 
     const bot = bots.map((bot) => (
         <Card key={bot.id} className="bots" style={{ width: '18rem' }}>
-            <div onClick={() => handleAddToArmy(bot.id)}>
+            <div onClick={() => viewDetails(bot.id)}>
                 <Card.Img variant="top" src={bot.avatar_url} alt={bot.name}/>
-                <p>Name: <span>{bot.name}</span></p>
-                <p>Class: <span>{bot.bot_class}</span></p>
-                <p>CatchPhrase: {bot.catchphrase}</p>
+                <p><span>{bot.name}</span></p>
+                <p><span>{bot.bot_class}</span></p>
+                <p>{bot.catchphrase}</p>
                 <hr/>
                 <p><BsFillHeartPulseFill/> {bot.health}
                 <BsFillLightningChargeFill />{bot.damage}
@@ -60,9 +45,7 @@ function BotCollection({bots, onDelete}) {
     
     return (
         <div id="content">
-        <YourBotArmy selectedBot={selectedBot} onRelease={releaseBotFromArmy}/>
-        <hr id="separator"/>
-        <div id="bot-collection">{bot}</div>
+            <div id="bot-collection">{bot}</div>
         </div>
        
     )

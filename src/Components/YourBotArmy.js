@@ -1,24 +1,24 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { BsFillHeartPulseFill, BsFillLightningChargeFill, BsShieldShaded} from "react-icons/bs";
 import Card from 'react-bootstrap/Card';
 
-function YourBotArmy({selectedBot, onRelease}) {
+function YourBotArmy({army, onRelease}) {
 
   function handleClick(id){
     onRelease(id)
   }
-
-  const army = selectedBot.map(army => (
-    <Card key={army.id} className="bots" style={{ width: '18rem' }}>
-      <div onClick={() => handleClick(army.id)}>
-        <Card.Img variant="top" src={army.avatar_url}/>
-        <p>Name: <span>{army.name}</span></p>
-        <p>Class: <span>{army.bot_class}</span></p>
-        <p>CatchPhrase: {army.catchphrase}</p>
+  
+  const armyMembers = army.map(member => (
+    <Card key={member.id} className="bots" style={{ width: '18rem' }}>
+      <div onClick={() => handleClick(member.id)}>
+        <Card.Img variant="top" src={member.avatar_url}/>
+        <p>Name: <span>{member.name}</span></p>
+        <p>Class: <span>{member.bot_class}</span></p>
+        <p>CatchPhrase: {member.catchphrase}</p>
         <hr/>
-        <p><BsFillHeartPulseFill/> {army.health}
-        <BsFillLightningChargeFill /> {army.damage}
-        <BsShieldShaded /> {army.armor}
+        <p><BsFillHeartPulseFill/> {member.health}
+        <BsFillLightningChargeFill /> {member.damage}
+        <BsShieldShaded /> {member.armor}
         </p>
       </div>
     </Card>
@@ -28,10 +28,14 @@ function YourBotArmy({selectedBot, onRelease}) {
   
 
   return (
-    <div>
-      <h2>Here is your Army:</h2>
-      <div id="bot-army">{army}</div>
+    <>
+    <h2>Here is your Army:</h2>
+    <div id="bot-army">
+      {armyMembers}
     </div>
+    <hr className="separator"/>
+    </>
+    
   )
 }
 

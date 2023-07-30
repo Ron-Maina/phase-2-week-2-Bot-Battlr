@@ -70,12 +70,20 @@ span{
 #bot-army{
   margin: auto;
   display: flex;
-  
+  padding: 50px;
+  background-color: lightslategrey;
 }
-#separator{
+.separator{
   height: 5px;
   background: gray;
 }
-
+#bot-details{
+  display: flex;
+  justify-content: center;
+}
+#rounded{
+  border-radius: 50%;
+  border: 1px solid #333;;
+}
 
 
