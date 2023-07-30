@@ -7,6 +7,13 @@ function BotCollection({bots}) {
     const[selectedBot, setSelectedBot]= useState([])
     const[selectedID, setSelectedID] = useState([])
 
+
+    function releaseBot(id){
+        console.log(id)
+        const filteredArray = selectedBot.filter(bot => bot.id !== id)
+        setSelectedBot(filteredArray)
+    }
+
     function handleClick(id){
         const selected = bots.filter(selected => selected.id === id)
         selected.map(bot => {
@@ -36,7 +43,7 @@ function BotCollection({bots}) {
     
     return (
         <>
-        <YourBotArmy selectedBot={selectedBot}/>
+        <YourBotArmy selectedBot={selectedBot} onRelease={releaseBot}/>
         <hr/>
         {bot}
         </>

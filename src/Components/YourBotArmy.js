@@ -2,9 +2,15 @@ import React, {useState, useEffect} from 'react'
 import { BsFillHeartPulseFill, BsFillLightningChargeFill, BsShieldShaded} from "react-icons/bs";
 
 
-function YourBotArmy({selectedBot}) {
+function YourBotArmy({selectedBot, onRelease}) {
+
+  function handleClick(id){
+    onRelease(id)
+  }
+
+
   const army = selectedBot.map(army => (
-    <button key={army.id} className="bots">
+    <button key={army.id} className="bots" onClick={() => handleClick(army.id)}>
       <img src={army.avatar_url}/>
       <p>Name: {army.name}</p>
       <p>Class: {army.bot_class}</p>
