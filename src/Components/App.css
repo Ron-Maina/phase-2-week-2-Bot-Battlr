@@ -46,6 +46,7 @@ span{
   align-items: center;
 }
 .bots{
+  margin:10px;
   width: 25%;
   height: auto;
   border: 1px solid #333;
@@ -61,4 +62,20 @@ span{
 .bots img{
   width: 95%;
 }
+#bot-collection{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  overflow-x: visible;
+}
+#bot-army{
+  margin: auto;
+  display: flex;
+  
+}
+#separator{
+  height: 5px;
+  background: gray;
+}
+
+
 
