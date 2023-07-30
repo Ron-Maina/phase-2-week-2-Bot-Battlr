@@ -13,37 +13,42 @@ To run this app locally, you need a PC with the following:
 * Internet Access
 
 ## Installation Process
-1. Clone this repository by running the following in your terminal
+1. Ensure JSON server is installed in your machine by typing the following command in your terminal
+```
+ npm install -g json-server
+
+```
+2. Clone this repository by running the following in your terminal
 ```
 git@github.com:Ron-Maina/phase-2-week-2-Bot-Battlr.git
 
 ```
-2. Switch directory by running
+3. Switch directory by running
 ```
 cd phase-2-week-2-Bot-Battlr
 
 ```
-3. Open in visual studio code using:
+4. Open in visual studio code using:
 ```
 code .
 
 ```
-4. Open the terminal and run the following command to install the app's dependencies
+5. Open the terminal and run the following command to install the app's dependencies
 ```
 npm install
 
 ```
-5. Run the following comman to run the json server
+6. Run the following comman to run the json server
 ```
 json-server --watch db.json --port 3001
 
 ```
-6. On a new terminal window run the app by typing the following command 
+7. On a new terminal window run the app by typing the following command 
 ```
 npm start
 
 ```
-7. Users can now interact with the App
+8. Users can now interact with the App
 * Clicking on the displayed bots adds them to your army
 * Clicking on the bots in your army removes them fom your army
 * The red button deletes the bot from the database and your army
