@@ -12,8 +12,8 @@ function YourBotArmy({selectedBot, onRelease}) {
   const army = selectedBot.map(army => (
     <button key={army.id} className="bots" onClick={() => handleClick(army.id)}>
       <img src={army.avatar_url}/>
-      <p>Name: {army.name}</p>
-      <p>Class: {army.bot_class}</p>
+      <p>Name: <span>{army.name}</span></p>
+      <p>Class: <span>{army.bot_class}</span></p>
       <p>CatchPhrase: {army.catchphrase}</p>
       <hr/>
       <p><BsFillHeartPulseFill/> {army.health}
