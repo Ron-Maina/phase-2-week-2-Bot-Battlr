@@ -14,11 +14,14 @@ function App() {
     .then(data => setBots(data))
   }, [])
 
- 
+  function deleteBot(id){
+    const updatedAfterDelete = bots.filter(bot => bot.id !== id)
+    setBots(updatedAfterDelete)
+  }
  
   return (
     <>
-      <BotCollection bots={bots}/>
+      <BotCollection bots={bots} onDelete={deleteBot}/>
     </>
    
   );

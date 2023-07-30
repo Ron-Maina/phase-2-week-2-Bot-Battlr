@@ -2,21 +2,20 @@ import React, {useState, useEffect} from 'react'
 import YourBotArmy from './YourBotArmy';
 import { BsFillHeartPulseFill, BsFillLightningChargeFill, BsShieldShaded} from "react-icons/bs";
 
-function BotCollection({bots}) {
+function BotCollection({bots, onDelete}) {
     
     const[selectedBot, setSelectedBot]= useState([])
     const[selectedID, setSelectedID] = useState([])
 
 
-    function releaseBot(id){
-        console.log(selectedID)
+    function releaseBotFromArmy(id){
         const filteredArray = selectedBot.filter(bot => bot.id !== id)
         const filteredID = selectedID.filter(ID => ID !== id)
         setSelectedID(filteredID)
         setSelectedBot(filteredArray)
     }
 
-    function handleClick(id){
+    function handleAddToArmy(id){
         const selected = bots.filter(selected => selected.id === id)
         selected.map(bot => {
             if (selectedID.includes(bot.id)){
@@ -28,24 +27,40 @@ function BotCollection({bots}) {
         })   
     }
 
+    function handleDeleteBot(id){
+        fetch(`http://localhost:3001/bots/${id}`, {
+            method: "DELETE"
+        })
+        onDelete(id)
+        releaseBotFromArmy(id)
+    }
+
     const bot = bots.map((bot) => (
-        <button key={bot.id} className="bots" onClick={() => handleClick(bot.id)}>
-            <img src={bot.avatar_url} alt={bot.name}/>
-            <p>Name: {bot.name}</p>
-            <p>Class: {bot.bot_class}</p>
-            <p>CatchPhrase: {bot.catchphrase}</p>
-            <hr/>
-            <p><BsFillHeartPulseFill/> {bot.health}
-            <BsFillLightningChargeFill />{bot.damage}
-            <BsShieldShaded />{bot.armor}
-            </p>
-        </button>
+        <div key={bot.id} className="bots">
+            <div onClick={() => handleAddToArmy(bot.id)}>
+                <img src={bot.avatar_url} alt={bot.name}/>
+                <p>Name: <span>{bot.name}</span></p>
+                <p>Class: <span>{bot.bot_class}</span></p>
+                <p>CatchPhrase: {bot.catchphrase}</p>
+                <hr/>
+                <p><BsFillHeartPulseFill/> {bot.health}
+                <BsFillLightningChargeFill />{bot.damage}
+                <BsShieldShaded />{bot.armor}
+                </p>
+            </div>
+            <div className='button'>
+                <button style={{color: "red"}} onClick={() => handleDeleteBot(bot.id)}>X</button>
+            </div>
+        </div>
+        
+        
+        
     ))
 
     
     return (
         <>
-        <YourBotArmy selectedBot={selectedBot} onRelease={releaseBot}/>
+        <YourBotArmy selectedBot={selectedBot} onRelease={releaseBotFromArmy}/>
         <hr/>
         {bot}
         </>
