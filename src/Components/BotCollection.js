@@ -9,8 +9,10 @@ function BotCollection({bots}) {
 
 
     function releaseBot(id){
-        console.log(id)
+        console.log(selectedID)
         const filteredArray = selectedBot.filter(bot => bot.id !== id)
+        const filteredID = selectedID.filter(ID => ID !== id)
+        setSelectedID(filteredID)
         setSelectedBot(filteredArray)
     }
 
