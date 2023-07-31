@@ -22,7 +22,7 @@ function BotSpecs({botDetails, onEnlist}) {
 
   const option = botDetails.map(option => (
     <div key={option.id} id="bot-details">
-      <div><img id="rounded" src={option.avatar_url}/></div>
+      <div><img id="rounded" src={option.avatar_url} alt={option.name}/></div>
       <div>
         <Card className="bots" style={{ width: '18rem' }}>
           <div>
