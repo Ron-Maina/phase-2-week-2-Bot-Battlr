@@ -20,7 +20,7 @@ To run this app locally, you need a PC with the following:
 ```
 2. Clone this repository by running the following in your terminal
 ```
-git@github.com:Ron-Maina/phase-2-week-2-Bot-Battlr.git
+git clone git@github.com:Ron-Maina/phase-2-week-2-Bot-Battlr.git
 
 ```
 3. Switch directory by running
